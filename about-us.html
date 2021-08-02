@@ -1,0 +1,50 @@
+---
+date: 2018-10-25 00:42:00 -04:00
+seo_source_collection: About Us
+crumbtitle: About Us
+layout: default
+background-image: hero@2x.jpg
+section-image-1: kari-shea-580156-unsplash@2x.jpg
+---
+
+{% assign background_image = page.background-image | remove_first: '/uploads/' | url_decode %}
+{% assign section_image_1 = page.section-image-1 | remove_first: '/uploads/' | url_decode %}
+{% assign phone_number = site.phone_number %}
+
+{% include mobile_hero.html image=background_image message="Let’s Talk" %}
+
+{% assign about_us_hero = site.about-us | where: "position", 1 | first %}
+{% assign who_we_are = site.about-us | where: "position", 2 | first %}
+{% assign meet_our_staff = site.about-us | where: "position", 3 | first %}
+
+<section id="about_us_hero" class="hero" style="background-image: url('{% asset '{{ background_image }}' @path %}')">
+    <div class="section-content">
+        <div class="section-content-inner">
+            <h1>{{ about_us_hero.title }}</h1>
+            <h2>{{ about_us_hero.tagline_part_1 }}<br class="only-desktop" />{{ about_us_hero.tagline_part_2 }}</h2>
+            <p>
+                {{ about_us_hero.content }}
+            </p>
+            <a href="tel:1-{{ phone_number }}" class="button rounded only-desktop">{{ phone_number }}</a>
+            <a href="tel:1-{{ phone_number }}" class="button rounded only-mobile">{{ about_us_hero.action_button_label }}&nbsp;&#x260E;</a>
+        </div>
+    </div>
+</section>
+
+<section id="who_we_are">
+    <h1 class="small small-full-width">Who We Are</h1>
+    <div class="inner-content-holder">
+        <div class="section-content">
+            <h2>{{ who_we_are.title }}</h2>
+            {{ who_we_are.content }}
+        </div>
+        <div class="side-image" style="background-image: url('{% asset '{{ section_image_1 }}' @path %}')"></div>
+    </div>
+</section>
+{% include section-type2.html
+    id=meet_our_staff.id
+    h1=meet_our_staff.h1
+    h2=meet_our_staff.h2
+    content=meet_our_staff.content
+    href=meet_our_staff.href
+%}

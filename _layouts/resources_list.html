@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+{% include section-type2.html
+    id="about_us_resources"
+    h1=page.subtitle
+    h2=page.title
+    content=content
+%}
+
+<section class="resources-top-list">
+    <h1 class="small">{{ page.title }}</h1>
+    <div id="resources_list">
+        <div class="list-inner">
+            {% assign collection_name = 'resources-' | append: page.type %}
+            {% assign resources = site[collection_name] | sort: 'position' %}
+            {% for item in resources %}
+                {% assign item_image = item.image | remove_first: '/uploads/' | url_decode %}
+                <div class="item">
+                    <div class="item-inner">
+                        <span class="image" style="background-image: url('{% asset '{{ item_image }}' @path %}')"></span>
+                        <div class="item-content">
+                            <h3>{{ item.title }}</h3>
+                            <p>
+                                {{ item.excerpt | strip_html }}
+                                <br />
+                                <a href="{{ item.link }}" target="_blank" class="learn-more">{{ page.action }} More &#x2192;</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

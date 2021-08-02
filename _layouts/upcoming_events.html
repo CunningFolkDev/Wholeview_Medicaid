@@ -1,0 +1,27 @@
+---
+layout: default
+---
+
+{% include section-type2.html
+    id="upcoming_events"
+    h1="Our Services"
+    h2="Upcoming Events"
+    content=""
+%}
+
+<section id="services_grid">
+    <div class="grid-inner">
+      {% assign today = "now" | date: "%s" | to_integer %}
+      {% assign all_events = site[page.collection] %}
+      {% include blank_event_card.html %}
+      {%- if all_events -%}
+        {% assign collection = all_events | sort: 'event_date' %}
+        {% for card in collection %}
+          {% assign event_date = card.event_date | to_integer %}
+          {% if event_date >= today %}
+            {% include event_card.html card=card %}
+          {% endif %}
+        {% endfor %}
+      {%- endif -%}
+    </div>
+</section>

@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+{% include mobile_hero.html image=page.background-image message="Our Technology." %}
+{% assign hero_content = page.hero_content %}
+{% assign callout = site.home | where: "position", 2 | first %}
+
+<section id="homepage_1" class="hero plant-image" style="background-image: url('{% asset '{{ page.background-image }}' @path %}')">
+    <div class="section-content">
+        <div class="section-content-inner">
+            <h1>{{ page.title }}</h1>
+            <h2>{{ page.h2 }}</h2>
+            <p>
+                {{ hero_content }}
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="who_we_are">
+    <h1 class="small small-full-width">{{ page.title }}</h1>
+    <div class="inner-content-holder">
+      <div class="section-content">
+        <h3>{{ page.h3 }}</h3>
+        {{ content }}
+      </div>
+      <div class="side-image" style="background-image:url('{% asset '{{ page.section-image-1 }}' @path %}')"></div>
+    </div>
+</section>
+
+{% include section-callout.html
+    h3=callout.h3
+    h4=callout.h4
+    button_msg=callout.button_msg
+    button_mobile=callout.button_mobile
+    button_href=callout.button_href
+%}

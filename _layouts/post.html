@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+{% if page.post_image %}
+    {% assign post_image = page.post_image | remove_first: '/uploads/' | url_decode %}
+{% endif %}
+
+{% assign content_with_phone_num = content | replace: "!PHONE_NUMBER!", site.phone_number %}
+
+<section class="post-holder">
+    <div class="post">
+        <header class="post-header">
+            <h2 class="post-title">{{ page.title }}</h2>
+            <ul class="post-meta">
+                {% for tag in page.tags %}
+                    <li class="post-tag">{{ tag }}</li>
+                {% endfor %}
+            </ul>
+
+            {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+            <p class="post-date">{{ page.date | date: date_format }}</p>
+
+            {% assign author = site.authors | where: 'title', page.author | first %}
+            {% if author %}
+                <p class="post-author">By <a href="{{ author.url }}">{{ page.author }}</a></p>
+            {% endif %}
+        </header>
+
+        {% if post_image %}
+            <div class='hero-image'>
+                <div style="background-image: url('{% asset '{{ post_image }}' @path %}')" class="post-hero-image"></div>
+            </div>
+        {% endif %}
+
+        <article class="post-content">
+            {{ content_with_phone_num }}
+        </article>
+    </div>
+</section>

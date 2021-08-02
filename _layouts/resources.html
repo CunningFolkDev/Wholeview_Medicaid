@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+{% include section-type2.html
+    id="about_us_resources"
+    h1=page.subtitle
+    h2=page.title
+    content=content
+%}
+
+<section class="resources-top-list">
+    <h1 class="small">Resources</h1>
+    <div id="resources_grid">
+        <div class="grid-inner">
+            {% assign publications = site.resources-publications | sort: 'position' %}
+            {% for card in publications limit: 1 %}
+                {% assign card_image = card.image | remove_first: '/uploads/' | url_decode %}
+                <div class="card card-2-up has-link">
+                    <div class="card-inner">
+                        <span class="image" style="background-image: url('{% asset '{{ card_image }}' @path %}')"></span>
+                        <h4>Publications</h4>
+                        <p>{{ card.content }}</p>
+                    </div>
+                    <a href="/about-us/resources/publications" class="learn-more">Read More &#x2192;</a>
+                </div>
+            {% endfor %}
+
+            {% assign media = site.resources-media | sort: 'position' %}
+            {% for card in media limit: 1 %}
+                {% assign card_image = card.image | remove_first: '/uploads/' | url_decode %}
+                <div class="card card-2-up has-link">
+                    <div class="card-inner">
+                        <span class="image" style="background-image: url('{% asset '{{ card_image }}' @path %}')"></span>
+                        <h4>Media</h4>
+                        <p>{{ card.content }}</p>
+                    </div>
+                    <a href="/about-us/resources/media" class="learn-more">See More &#x2192;</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

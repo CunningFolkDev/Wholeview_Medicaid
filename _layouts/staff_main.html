@@ -1,0 +1,31 @@
+---
+layout: default
+---
+
+{% assign section_content = content | strip_html %}
+{% include section-type2.html
+    id="meet_our_staff"
+    h1=page.title
+    h2="Meet Our Staff"
+    content=section_content
+%}
+
+{% assign staff = site.staff | sort: 'position' %}
+<section id="staff_list">
+    <div class="grid-inner">
+        {% for person in staff  %}
+            <div class="team-bio-card" aria-data-url="{{ person.url }}">
+                <section class="team-bio-card-inner">
+                    {% assign bio_photo = person.photo | remove_first: '/uploads/' | url_decode %}
+                    <img src="{% asset '{{ bio_photo }}' @path %}" class="team-bio-photo" alt="{% if person.photo_alt %}{{ person.photo_alt }}{% else %}{{ person.title }}{% endif %}" />
+                    <div class="team-bio-text">
+                        <h1>{{ person.full_title }}</h1>
+                        <h4>{{ person.job_title }}</h4>
+                        <p class="preview">{{ person.excerpt | strip_html }}</p>
+                    </div>
+                </section>
+                <a href="{{ person.url }}" class="learn-more">Learn More &#x2192;</a>
+            </div>
+        {% endfor %}
+    </div>
+</section>

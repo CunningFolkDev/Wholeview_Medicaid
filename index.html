@@ -1,0 +1,100 @@
+---
+date: 2018-08-26 01:08:00 -04:00
+seo_source_collection: Home
+crumbtitle: Home
+background-image: "/uploads/sarah-dorweiler-211779-unsplash@2x.png"
+section-image-1: aaron-burson-242126-unsplash@2x.jpg
+section-image-2: scott-webb-249006-unsplash@2x.jpg
+section-image-3: handful-of-flowers@2x.jpg
+section-image-4: josh-couch-475118-unsplash@2x.jpg
+layout: default
+---
+
+{% assign background_image = page.background-image | remove_first: '/uploads/' | url_decode %}
+{% assign section_image_1 = page.section-image-1 | remove_first: '/uploads/' | url_decode %}
+{% assign section_image_2 = page.section-image-2 | remove_first: '/uploads/' | url_decode %}
+{% assign section_image_3 = page.section-image-3 | remove_first: '/uploads/' | url_decode %}
+{% assign section_image_4 = page.section-image-4 | remove_first: '/uploads/' | url_decode %}
+{% assign home_content = site.home %}
+{% assign hero = home_content | where: "position", 1 | first %}
+{% assign callout = home_content | where: "position", 2 | first %}
+{% assign what_we_do = home_content | where: "position", 3 | first %}
+{% assign how_are_we_different = home_content | where: "position", 4 | first %}
+{% assign our_vision = home_content | where: "position", 5 | first %}
+{% assign treatment = home_content | where: "position", 6 | first %}
+
+{% include mobile_hero.html image=background_image message="Need Help?" %}
+
+{% assign covid_callout = home_content | where: "position", 7 | first %}
+{% include section-callout.html
+    h3=covid_callout.h3
+    h4=covid_callout.h4
+    title=covid_callout.title
+    content=covid_callout.content
+    button_msg=covid_callout.button_msg
+    button_mobile=covid_callout.button_mobile
+    button_href=covid_callout.button_href
+%}
+
+
+<section id="homepage_1" class="hero plant-image" style="background-image: url('{% asset '{{ background_image }}' @path %}')">
+    <div class="section-content">
+        <div class="section-content-inner sl-test2">
+            <h1>{{ hero.h1 }}</h1>
+            <h2>{{ hero.h2 }}</h2>
+            <p>
+              {{ hero.content }}
+            </p>
+            <a class="button rounded" href="/about-us/contact">{{ hero.button_label }}</a>
+        </div>
+    </div>
+</section>
+{% assign callout_h4 = callout.h4 | append: site.phone_number %}
+{% assign phone_href = "tel:1-" | append: site.phone_number %}
+{% include section-callout.html
+    h3=callout.h3
+    h4=callout_h4
+    button_msg=site.phone_number
+    button_mobile=callout.button_mobile
+    button_href=phone_href
+%}
+
+{% include section-type1.html
+    id="what_we_do"
+    href="/about-us/"
+    photo-side="right"
+    photo=section_image_1
+    h1=what_we_do.h1
+    h2=what_we_do.h2
+    content=what_we_do.content
+%}
+
+{% include section-type1.html
+    id="how_are_we_different"
+    href="/why-wholeview/"
+    photo-side="left"
+    photo=section_image_2
+    h1=how_are_we_different.h1
+    h2=how_are_we_different.h2
+    content=how_are_we_different.content
+%}
+
+{% include section-type1.html
+    id="our_vision"
+    href="/services/"
+    photo-side="right"
+    photo=section_image_3
+    h1=our_vision.h1
+    h2=our_vision.h2
+    content=our_vision.content
+%}
+
+{% include section-type1.html
+    id="treatment"
+    href="/services/treatment-programs/"
+    photo-side="left"
+    photo=section_image_4
+    h1=treatment.h1
+    h2=treatment.h2
+    content=treatment.content
+%}

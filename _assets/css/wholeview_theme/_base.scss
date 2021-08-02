@@ -1,0 +1,511 @@
+/**
+ * Reset some basic elements
+ */
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+    margin: 0;
+    padding: 0;
+}
+
+@import "reset_forms";
+
+/**
+ * Basic styling
+ */
+body {
+    font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+    color: $text-color;
+    background-color: $background-color;
+    // -webkit-text-size-adjust: 250%;
+    -webkit-font-feature-settings: "kern" 1;
+        -moz-font-feature-settings: "kern" 1;
+        -o-font-feature-settings: "kern" 1;
+            font-feature-settings: "kern" 1;
+    font-kerning: normal;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 769px) {
+    .only-mobile { display: none !important; }
+}
+@media screen and (max-width: 768px) {
+    .only-desktop { display: none !important; }
+}
+
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure,
+%vertical-rhythm {
+    margin-bottom: $spacing-unit / 2;
+}
+
+
+
+/**
+ * `main` element
+ */
+main {
+    display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */
+}
+
+
+
+/**
+ * Images
+ */
+img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+
+/**
+ * SVG rendered inline
+ */
+svg {
+    display: block;
+    width: 100%;
+}
+
+
+/**
+ * Figures
+ */
+figure > img {
+    display: block;
+}
+
+figcaption {
+    font-size: $small-font-size;
+}
+
+
+
+/**
+ * Lists
+ */
+ul, ol {
+    margin-left: $spacing-unit;
+}
+
+li {
+    > ul,
+    > ol {
+        margin-bottom: 0;
+    }
+}
+
+
+
+/**
+ * Headings
+ */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: $base-font-weight;
+}
+
+
+
+/**
+ * Links
+ */
+a {
+    color: $brand-color;
+    text-decoration: none;
+
+    &:visited {
+        color: $brand-color;
+    }
+
+    &:hover {
+        color: $text-color;
+        text-decoration: none;
+    }
+    &.learn-more {
+        color: $greyish-brown;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        cursor: pointer;
+        &:hover {
+            text-decoration: none;
+            color: $avocado;
+        }
+    }
+}
+
+/**
+ * Buttons
+ */
+.button {
+    display: inline-block;
+    background-color: #fff;
+    color: $greyish-brown;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+
+
+    &.rounded {
+        border: none;
+        border-radius: 50px;
+        width: 250px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    &.bordered {
+        border: 1px solid $greyish-brown;
+    }
+}
+
+/**
+  * Dropdowns
+  */
+
+// Adapted from https://css-tricks.com/styling-a-select-like-its-2019/
+
+  /* class applies to select element itself, not a wrapper element */
+  .select-css {
+      display: block;
+      font-size: 16px;
+      font-weight: normal;
+      color: #444;
+      line-height: 1.5;
+      padding: 12px;
+      width: 100%;
+      max-width: 100%; /* useful when width is set to anything other than 100% */
+      box-sizing: border-box;
+      margin: 0;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+      background-color: #fff;
+      /* note: bg image below uses 2 urls. The first is an svg data uri for the arrow icon, and the second is the gradient.
+          for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference
+
+      */
+      background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23A8B400%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+      background-repeat: no-repeat, repeat;
+      /* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
+      background-position: right .7em top 50%, 0 0;
+      /* icon size, then gradient */
+      background-size: .65em auto, 100%;
+
+      &:hover {
+          border-color: $greyish-brown;
+      }
+      &:focus {
+          border-color: $avocado;
+      }
+  }
+  /* Hide arrow icon in IE browsers */
+  .select-css::-ms-expand {
+      display: none;
+  }
+
+  /* Set options to normal weight */
+  .select-css option {
+      font-weight: normal;
+  }
+
+  /* Support for rtl text, explicit support for Arabic and Hebrew */
+  *[dir="rtl"] .select-css, :root:lang(ar) .select-css, :root:lang(iw) .select-css {
+      background-position: left .7em top 50%, 0 0;
+      padding: .6em .8em .5em 1.4em;
+  }
+
+/**
+ * Blockquotes
+ */
+blockquote {
+    color: $pale-blue;
+    border-left: 4px solid $pale-blue;
+    padding-left: $spacing-unit / 2;
+    @include relative-font-size(1.125);
+    letter-spacing: -1px;
+    font-style: italic;
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+
+
+/**
+ * Code formatting
+ */
+pre,
+code {
+    @include relative-font-size(0.9375);
+    border: 1px solid $pale-blue;
+    border-radius: 3px;
+    background-color: #eef;
+}
+
+code {
+    padding: 1px 5px;
+}
+
+pre {
+    padding: 8px 12px;
+    overflow-x: auto;
+
+    > code {
+        border: 0;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+
+
+/**
+ * Wrapper
+ */
+.wrapper {
+    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
+    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: $spacing-unit;
+    padding-left: $spacing-unit;
+    @extend %clearfix;
+
+    @include media-query($on-laptop) {
+        max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
+        max-width:         calc(#{$content-width} - (#{$spacing-unit}));
+        padding-right: $spacing-unit / 2;
+        padding-left: $spacing-unit / 2;
+    }
+}
+
+
+
+/**
+ * Clearfix
+ */
+%clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+
+/**
+ * Icons
+ */
+
+.svg-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    fill: #{$grey-blue};
+    padding-right: 5px;
+    vertical-align: text-top;
+}
+
+.social-media-list {
+    li + li {
+        padding-top: 5px;
+    }
+}
+
+
+
+/**
+ * Tables
+ */
+table {
+    margin-bottom: $spacing-unit;
+    width: 100%;
+    text-align: $table-text-align;
+    color: lighten($text-color, 18%);
+    border-collapse: collapse;
+    border: 1px solid $pale-blue;
+    tr {
+        &:nth-child(even) {
+            background-color: lighten($pale-blue, 6%);
+        }
+    }
+    th, td {
+        padding: ($spacing-unit / 3) ($spacing-unit / 2);
+    }
+    th {
+        background-color: lighten($pale-blue, 3%);
+        border: 1px solid darken($pale-blue, 4%);
+        border-bottom-color: darken($pale-blue, 12%);
+    }
+    td {
+        border: 1px solid $pale-blue;
+    }
+}
+
+
+/* misc */
+
+.hidden { display: none; }
+
+// Modal & overlay
+
+div.overlay {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 500ms;
+
+  &.hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+aside.modal {
+  z-index: 1000;
+  background-color: #ffffff;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  color: #5d6367;
+  opacity: 1.0;
+
+  width: 270px;
+  height: 540px;
+  min-width: 290px;
+  max-width: 60vw;
+
+  max-height: 80vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  @media screen and (min-width: 1189px) {
+    flex-direction: row;
+    width: 60vw;
+    max-width: 950px;
+    height: 50vh;
+    min-height: 428px;
+  }
+
+  @media screen and (max-height: 655px) {
+    overflow-y: scroll;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    border: 0;
+    cursor: pointer;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: normal;
+    text-decoration: none;
+    background-color: rgba(0,0,0,0);
+    padding: 2px 7px;
+    color: #5d6367;
+    &:hover {
+      color: #b4c327;
+    }
+  }
+
+  .modal-logo-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 290px;
+    flex-shrink: 0;
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    box-shadow: inset 0 0 10px 7px rgba(0, 0, 0, 0.02);
+    background-color: #ffffff;
+    @media screen and (min-width: 1189px) {
+      max-height: 100%;
+      height: 100%;
+      width: 55%;
+      padding-bottom: 20px;
+      padding-top: 0px;
+    }
+  }
+
+  .modal-logo {
+    height: 137px;
+    width: 280px;
+    overflow: hidden;
+  }
+
+  .modal-copy {
+    margin-top: 8px;
+    padding-left: 35px;
+    padding-right: 35px;
+    h3 {
+      text-align: center;
+      font-size: 1.3em;
+      @media screen and (min-width: 1189px) {
+        font-size: 1.6em;
+      }
+    }
+    p {
+      font-size: 0.7em;
+      @media screen and (min-width: 1189px) {
+        font-size: 0.9em;
+      }
+    }
+    .popup-sign-up-form {
+      form {
+        height: 50px;
+        display: flex;
+      }
+      button {
+        font-size: 14px;
+        width: 38%;
+        height: 100%;
+        color: #fff;
+        font-weight: 500;
+        text-transform: none;
+        text-align: center;
+        border: 0;
+        background-color: #b4c327;
+        position: relative;
+        padding-left: 6px;
+        padding-right: 6px;
+
+        &:hover {
+            cursor: pointer;
+        }
+      }
+      input {
+        height: 100%;
+        width: 62%;
+        margin-right: -4px;
+        border: solid 0.5px #e7e7e7;
+        padding-left: 5px;
+      }
+
+    }
+  }
+
+}

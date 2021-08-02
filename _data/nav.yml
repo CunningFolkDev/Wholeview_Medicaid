@@ -1,0 +1,42 @@
+toc:
+
+- title: Why Wholeview Wellness&reg;?
+  url: /why-wholeview/
+  class: why
+  subitems:
+    - page: How We Treat
+      url: /why-wholeview/how-we-treat/
+    - page: Therapies Used
+      url: /why-wholeview/therapies-used/
+    - page: Our Technology
+      url: /why-wholeview/our-technology/
+    - page: Frequently Asked Questions
+      url: /why-wholeview/faq/
+
+- title: Services
+  url: /services/
+  class: services
+  subitems:
+    - page: Treatment Programs
+      url: /services/treatment-programs/
+    - page: Group Psychotherapy
+      url: /services/group-psychotherapy
+    - page: Trainings for Clinicians
+      url: /services/trainings-for-clinicians/
+    - page: Upcoming Events
+      url: /services/upcoming-events/
+
+- title: About Us
+  url: /about-us/
+  class: about
+  subitems:
+    - page: Our Staff
+      url: /about-us/our-staff/
+    - page: Resources
+      url: /about-us/resources/
+    - page: Contact Us
+      url: /about-us/contact/
+
+- title: Blog
+  url: /blog
+  class: blog

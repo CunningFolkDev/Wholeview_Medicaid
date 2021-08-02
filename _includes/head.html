@@ -1,0 +1,38 @@
+{% assign is_root = false %}
+{% assign is_blog = false %}
+{% if page.url == '/' %}
+    {% assign is_root = true %}
+{% endif %}
+{% if page.layout == 'post' %}
+    {% assign is_blog = true %}
+{% endif %}
+
+{% if page.title %}
+{% assign page_title = page.title %}
+{% endif %}
+
+{% assign seo_source_collection = site.collections | where: "title", page.seo_source_collection | first %}
+{% if seo_source_collection %}
+  {% assign page_title = seo_source_collection.page_title %}
+  {% if seo_source_collection.seo_title %}
+    {% assign page_title = seo_source_collection.seo_title %}
+  {% endif %}
+{% endif %}
+
+{% if page.seo_title %}
+  {% assign page_title = page.seo_title %}
+{% endif %}
+
+<title>
+  {{ page_title }}{% if is_blog %} | Blog {% endif %}{% unless is_root %} | {{ site.title }}{% endunless %} – {{ site.seo_subtitle }}
+</title>
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,500,700,700i,900,900i" rel="stylesheet">
+{% asset main.css %}
+
+<link rel="icon" href="{% asset "favicon.ico" @path %}">
+<!-- <link rel="icon" href="/assets/favicon-6d128f362d8eacbf78db606e03ba712f3b1193bc02c73d47537f713e7db53d43.ico"> -->
+<link rel="icon" sizes="192x192" href="{% asset "android-chrome-192x192.png" @path %}">
+<link rel="icon" sizes="512x512" href="{% asset "android-chrome-512x512.png" @path %}">
+<link rel="apple-touch-icon" sizes="180x180" href="{% asset "apple-touch-icon.png" @path %}">
+<link rel="mask-icon" href="{% asset "safari-pinned-tab.svg" @path %}" color="#53555c">

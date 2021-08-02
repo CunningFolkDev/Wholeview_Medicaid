@@ -1,0 +1,18 @@
+<section class="type1" id="{{ include.id }}">
+    {% if include.photo-side == "left" %}
+        <div class="section-image" style="background-image: url('{% asset '{{ include.photo }}' @path %}')"></div>
+    {% endif %}
+    <div class="section-text">
+        <div class="section-text-inner">
+            <h1 class="small">{{ include.h1 }}</h1>
+            <h2>{{ include.h2 }}</h2>
+            <p>{{ include.content }}</p>
+        </div>
+        {% if include.href %}
+            <a href="{{ include.href }}" class="learn-more">Learn More &#x2192;</a>
+        {% endif %}
+    </div>
+    {% if include.photo-side != "left" %}
+        <div class="section-image" style="background-image: url('{% asset '{{ include.photo }}' @path %}')"></div>
+    {% endif %}
+</section>

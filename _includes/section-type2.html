@@ -1,0 +1,23 @@
+<section class="type2" id="{{ include.id }}" >
+    <div class="type2-inner">
+        <div class="section-text-wide"><h1 class="small">{{ include.h1 }}</h1></div>
+        <div class="section-text">
+            <h2 style="margin: 0;">{{ include.h2 }}</h2>
+            {% if include.include_phone_number %}
+              <h4 style="margin-top: 5px; margin-left: 5px;">
+                <a href="tel:1-{{ site.phone_number }}">
+                  {{ site.phone_number }}
+                </a>
+              </h4>
+            {% endif %}
+        </div>
+        <div class="section-text">
+            <div class="section-text-inner">
+                <p>{{ include.content }}</p>
+            </div>
+            {% if include.href %}
+                <a href="{{ include.href }}" class="learn-more">Learn More &#x2192;</a>
+            {% endif %}
+        </div>
+    </div>
+</section>

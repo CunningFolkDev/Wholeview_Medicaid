@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+{% assign content_with_phone_num = page.content | replace: '!PHONE_NUMBER!', site.phone_number %}
+
+{% include section-type2.html
+    id="service_subsection_header"
+    h1="Our Services"
+    h2=page.title
+    content=content_with_phone_num
+%}
+
+<section id="services_grid">
+    <div class="grid-inner">
+        {% assign collection = site[page.collection] | sort: 'position' %}
+        {%- for card in collection -%}
+            {% include services_card.html card=card %}
+        {%- endfor -%}
+    </div>
+</section>
+
+{% if page.callout %}
+    {% include section-callout.html
+        h3="Patients can remain connected to one another through the Connections mobile app which is available to all Wholeview Wellness&reg; patients."
+        h4="Because addiction is a chronic health issue, recurrences are a part of the recovery process, and patients work with their therapists to plan for these emergencies in advance so that they are not taken by surprise if they occur.  Staying in contact with the Wholeview Wellness&reg; community can help patients keep minor slips from becoming full relapses."
+        button_msg="Download the App"
+        button_mobile="Download the App"
+        button_href="https://www.chess.health/download/"
+    %}
+{% endif %}
+
+{% if page.footer-section %}
+    {% assign footer = page.footer-section %}
+    {% assign content_with_phone_num = footer.copy | replace: "!PHONE_NUMBER!", site.phone_number %}
+
+    {% include section-type2.html
+        id="service_subfooter"
+        h1=footer.title
+        h2=footer.callout
+        content=content_with_phone_num
+    %}
+{% endif %}

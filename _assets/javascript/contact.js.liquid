@@ -1,0 +1,231 @@
+(function scope() {
+    const E360 = new Function();
+
+    const Contact = {
+      init: () => {
+        Contact.watchButtonSubmission()
+        return Contact.watchKeypressSubmission()
+      },
+      grabFormData: (formElement, dataType) => {
+        const formData = new FormData(formElement)
+        let returnData =  null
+
+        if (dataType === 'json') {
+          const formDataObject = new Object()
+
+          formData.forEach((value, key) => {
+            formDataObject[key] = value
+          })
+
+          returnData = JSON.stringify(formDataObject)
+        } else {
+          returnData = new URLSearchParams(formData).toString()
+        }
+
+        return returnData
+      },
+      submitForm: (formElement, formAction) => {
+        let contentType, formData, urlToCall
+        const errorResult = (response, formAction) => {
+          console.log(`${formAction} did not work`)
+          return console.log(response)
+        }
+        const successResult = (response, formAction) => {
+          const formElement = document.getElementById(`${formAction.replace('-','_')}_form`)
+          const formHolderElement = formElement.closest('.form-holder')
+          const messageElements = formHolderElement.querySelectorAll('.message')
+
+          let bodyResponse = null
+          if (response.bodyUsed) {
+            bodyResponse = response.json()
+          } else {
+            bodyResponse = response.text()
+          }
+
+          if (formElement) {
+            formElement.style.display = 'none'
+          }
+
+          if (bodyResponse.result !== 'error') {
+            resetForm(formElement, formAction)
+            return Array.prototype.forEach.call(messageElements, (el) => {
+              el.removeAttribute('style')
+            })
+          } else if (bodyResponse.msg.toLowerCase().indexOf('already subscribed') >= 0) {
+            resetForm(formElement, formAction)
+            return Array.prototype.forEach.call(messageElements, (el) => {
+              el.innerHTML = '<p>Thank you!</p><p>You’re all set!</p>'
+              el.removeAttribute('style')
+            })
+          } else {
+            let button_text
+            if (formAction === 'contact') {
+              button_text = 'Send message'
+            } else {
+              button_text = 'Submit'
+            }
+
+            // show the form, if it was hidden
+            formHolderElement.removeAttribute('style')
+
+            // show error message
+            const errorMessageElements = formElement.querySelectorAll('.error-message')
+            Array.prototype.forEach.call(errorMessageElements, (el) => {
+              el.textContent = bodyResponse.msg
+              el.removeAttribute('style')
+            })
+
+            // reset form in-progress state
+            formElement.classList.remove('in-progress')
+            const submitButtonElements = formElement.querySelectorAll('.submit')
+            Array.prototype.forEach.call(submitButtonElements, (el) => {
+              el.textContent = button_text
+            })
+            return console.log(bodyResponse)
+          }
+
+          return null
+        }
+        const resetForm = (formElement, formAction) => {
+          const inputElements = formElement.querySelectorAll('INPUT')
+          const textAreaElements = formElement.querySelectorAll('TEXTAREA')
+          const submitButtonElements = formElement.querySelectorAll('.submit')
+
+          let button_text
+          if (formAction === 'contact') {
+            button_text = 'Send message'
+          } else {
+            button_text = 'Submit'
+          }
+
+          formElement.classList.remove('in-progress')
+          Array.prototype.forEach.call(submitButtonElements, (el) => {
+            el.textContent = button_text
+          })
+          Array.prototype.forEach.call(inputElements, (el) => {
+            el.value = ''
+          })
+          Array.prototype.forEach.call(textAreaElements, (el) => {
+            el.value = ''
+            el.removeAttribute('style')
+          })
+
+          return null
+        }
+
+        if (!formElement.classList.contains('in-progress')) {
+          const postData = (url = ``, data = {}) => {
+            return fetch(url, {
+              method: method,
+              mode: 'no-cors',
+              headers: {
+                'Accept': acceptType,
+                'Content-Type': contentType,
+              },
+              body: data, // body data type must match 'Content-Type' header
+            })
+            .then(response => response)
+          }
+
+          const errorMessageElements = formElement.querySelectorAll('.error-message')
+          const submitButtonElements = formElement.querySelectorAll('.submit')
+
+          Array.prototype.forEach.call(errorMessageElements, (el) => {
+            el.style.display = 'none'
+          })
+          formElement.classList.add('in-progress')
+          Array.prototype.forEach.call(submitButtonElements, (el) => {
+            el.textContent = 'Please wait…'
+          })
+
+          if (formAction === 'sign-up') {
+            method = 'GET'
+            formData = Contact.grabFormData(formElement, 'json')
+            urlToCall = `{{ site.mailchimp_url | replace: "/post?", "/post-json?" }}&c=?&EMAIL=${JSON.parse(formData).EMAIL}`
+            acceptType = 'application/json'
+            contentType = 'application/json; charset=utf-8'
+            formData = null
+          } else if (formAction === 'contact') {
+            method = 'POST'
+            formData = Contact.grabFormData(formElement, 'queryString')
+            urlToCall = 'https://formcarry.com/s/{{ site.formcarry_form_id }}'
+            acceptType = 'application/json'
+            contentType = 'application/x-www-form-urlencoded; charset=utf-8'
+          }
+          return postData(urlToCall, formData)
+            .then(response => successResult(response, formAction))
+            .catch(error => console.error(error))
+        }
+
+        return null
+      },
+      preSubmitForm: (formElement) => {
+        let formAction
+        const validation = GBValidations.validate(formElement)
+        if (validation.check) {
+          if (formElement.id === 'sign_up_form') {
+            formAction = 'sign-up'
+          } else if (formElement.id === 'modal_sign_up_form') {
+            formAction = 'modal-sign-up'
+          } else if (formElement.id === 'contact_form') {
+            formAction = 'contact'
+          }
+          return Contact.submitForm(formElement, formAction)
+        }
+        return null
+      },
+      watchButtonSubmission: () => {
+        return document.addEventListener('click', (e) => {
+          if ((e.target.tagName === 'A' || e.target.tagName === 'BUTTON') && e.target.classList.contains('submit')) {
+            e.preventDefault()
+
+            const parentFormElement = e.target.closest('form')
+            return Contact.preSubmitForm(parentFormElement)
+          }
+          return null
+        }, false)
+      },
+      watchKeypressSubmission: () => {
+        // stop forms from getting submitted naturally
+        const contactFormElement = document.getElementById('contact_form')
+        const signUpFormElement = document.getElementById('sign_up_form')
+        const modalSignUpFormElement = document.getElementById('modal_sign_up_form')
+
+        if (contactFormElement) {
+          contactFormElement.addEventListener('submit', (e) => {
+            e.preventDefault()
+          }, true)
+        }
+
+        if (signUpFormElement) {
+          signUpFormElement.addEventListener('submit', (e) => {
+            e.preventDefault()
+          }, true)
+        }
+
+        if (modalSignUpFormElement) {
+          signUpFormElement.addEventListener('submit', (e) => {
+            e.preventDefault()
+          }, true)
+        }
+
+        return document.addEventListener('keyup', (e) => {
+          const activeElement = document.activeElement
+          const activeFormElement = activeElement.closest('form')
+          const key = e.key || e.keyCode
+
+          if (key === 'Enter' || key === 13) {
+            if ((activeElement.tagName !== 'TEXTAREA') &&
+              (activeElement.tagName === 'INPUT')) {
+              return Contact.preSubmitForm(activeFormElement)
+            }
+          }
+        })
+      }
+    }
+
+    window.E360 = E360;
+    window.Contact = Contact;
+}());
+
+ready(Contact.init)

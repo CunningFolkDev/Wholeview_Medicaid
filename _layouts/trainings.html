@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+{% include section-type2.html
+    id="trainings_for_clinicians"
+    h1="Our Services"
+    h2="Trainings for Clinicians"
+    content=""
+%}
+
+{% assign callout_h4 = "If you are interested in attending a training<br>or setting up a training at your program,<br>please call us at " | append: site.phone_number | append: "." %}
+{% assign phone_href = "tel:1-" | append: site.phone_number %}
+{% include section-callout.html
+    h3="Call Us"
+    h4=callout_h4
+    button_msg="Call Now"
+    button_mobile="Call Now"
+    button_href=phone_href
+%}
+
+<section id="services_grid">
+    <div class="grid-inner">
+        {% assign collection = site[page.collection] | sort: 'position' %}
+        {%- for card in collection -%}
+            {% include services_card.html card=card %}
+        {%- endfor -%}
+    </div>
+</section>

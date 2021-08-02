@@ -1,0 +1,12 @@
+{% if page.post_image %}
+    {% assign image_path = page.post_image | remove_first: '/uploads/' | url_decode %}
+{% elsif page.image %}
+    {% assign image_path = page.image | remove_first: '/uploads/' | url_decode %}
+{% endif %}
+
+{% unless image_path %}
+    {% assign image_path = 'seo.png' %}
+{% endunless %}
+
+<meta property="og:image" content="{{ site.url }}{% asset '{{ image_path }}' @path %} ">
+<meta name="twitter:image:src" content="{{ site.url }}{% asset '{{ image_path }}' @path %} ">

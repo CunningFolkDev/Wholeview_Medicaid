@@ -1,0 +1,12 @@
+{% assign content_with_phone_num = include.card.content | replace: '!PHONE_NUMBER!', site.phone_number %}
+
+{% assign card_href = include.card.event_url %}
+
+<div class="card services-card">
+  <div class="card-inner">
+    <h4>{{ include.card.title }}</h4>
+    <p>{{ include.card.event_date | date: "%b %e, %Y @ %l:%M %p" }}</p>
+    {{ content_with_phone_num }}
+  </div>
+  <a href="{{ card_href }}" target="_blank" class="learn-more">Sign Up &#x2192;</a>
+</div>

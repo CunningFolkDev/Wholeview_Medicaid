@@ -1,0 +1,17 @@
+<header class="site-header">
+    <div class="top-content">
+        <h1>
+          <a href="/">
+            <span class="text">
+                {{ site.title }}
+            </span>
+            <span class="logo">
+                {% include svg/logo.svg %}
+            </span>
+          </a>
+        </h1>
+        <a class="cta" href="tel:1-{{ site.phone_number }}"><span class="wide">Need Help? </span>{{ site.phone_number }} &#x260E;</a>
+    </div>
+
+    {% include nav.html %}
+</header>

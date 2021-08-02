@@ -1,0 +1,253 @@
+---
+title: Wholeview Wellness&reg;
+timezone: America/New_York
+collections:
+  about-us:
+    title: About Us
+    output: false
+    page_title: About Us
+    seo_title: Expert Addiction Psychologists | Professional Treatment for Substance
+      Use Disorders
+    seo_description: Need to find an addiction treatment center near you? Wholeview
+      Wellness has expert team of addiction psychologists at their treatment center
+      in Midtown.
+    seo_keywords: find a psychologist near me, mental health psychologist ny, addiction
+      therapist, addiction psychologist, treatment for substance use disorders, addiction
+      treatment center, addiction psychologist midtown, alcohol counseling near me,
+      drug counselor midtown, addiction psychologists
+  authors:
+    title: Authors
+    output: true
+  group-psychotherapy:
+    title: Group Psychotherapy
+    output: true
+    page_title: Group Psychotherapy
+    seo_title: Group psychotherapy options for addiction treatment | Recovery Rehabs
+      NY
+    seo_description: Wholeview Wellness offers many therapy groups & recovery programs,
+      some are skills based, some provide support and structure for living a balanced
+      life.
+    seo_keywords: substance use disorder treatment ny, recovery programs ny, recovery
+      rehabs,  group treatment for drugs, group psychotherapy for addiction, groups
+      for alcohol use, cognitive behavioral group,
+  home:
+    title: Home
+    output: false
+    page_title: Welcome to Wholeview Wellness&reg;
+    seo_title: Outpatient Treatment Rehab for Substance Abuse Midtown Manhattan
+    seo_description: Wholeview Wellness is a private intensive outpatient program
+      designed to treat people struggling with alcohol addiction and drug use and
+      co-occurring mental health disorders.
+    seo_keywords: |-
+      private outpatient drug rehab centers, outpatient substance abuse treatment near me, outpatient drug rehab programs,
+      intensive outpatient program near me, outpatient rehab for substance abuse, Outpatient addiction treatment Midtown Manhattan, drug Rehab Midtown Manhattan, intensive outpatient program Midtown Manhattan, IOP near me, alcohol counseling near me
+  how-we-treat:
+    title: How We Treat
+    output: true
+    permalink: "/why-wholeview/how-we-treat//:name/"
+  resources-media:
+    title: Media
+    output: false
+  posts:
+    title: Posts
+    output: true
+    page_title: Posts
+    seo_title: Expert Addiction Psychologists | Professional Treatment for Substance
+      Use Disorders
+    seo_description: Need to find an addiction treatment center near you? Wholeview
+      Wellness has an expert team of addiction psychologists at their treatment center
+      in Midtown.
+    seo_keywords: find a psychologist near me, mental health psychologist ny, addiction
+      therapist, addiction psychologist, treatment for substance use disorders, addiction
+      treatment center, addiction psychologist midtown, alcohol counseling near me,
+      drug counselor midtown, addiction psychologists
+  resources-publications:
+    title: Publications
+    output: false
+  staff:
+    title: Staff
+    output: true
+    permalink: "/about-us/our-staff/:title/"
+  therapies-used:
+    title: Therapies Used
+    output: true
+    permalink: "/why-wholeview/therapies-used/:name/"
+  trainings:
+    title: Trainings for Clinicians
+    output: true
+    permalink: "/services/trainings-for-clinicians/:name/"
+  treatment-programs:
+    title: Treatment Programs
+    output: true
+    permalink: "/services/treatment-programs/:name/"
+  upcoming-events:
+    title: Upcoming Events
+    output: false
+  uploads:
+    title: Uploads
+    output: true
+defaults:
+- scope:
+    path: ''
+    type: posts
+  values:
+    layout: post
+    permalink: "/blog/:title/"
+    categories:
+    - insights
+    - blog
+    tags:
+    - drinking
+    - alcohol
+    - addiction
+    - recovery
+    - psychology
+    author: 
+    post_image: 
+    image_alt_text: 
+    seo_description: 
+    seo_keywords: 
+- scope:
+    path: ''
+    type: staff
+  values:
+    layout: quarternary
+    full_title: Name Here
+    job_title: Job Title Here
+    photo: "/uploads/IMG_0916-cb7bd0.jpg"
+    photo_left: true
+    back_href: "/about-us/our-staff"
+    back_title: Our Staff
+- scope:
+    path: ''
+    type: therapies-used
+  values:
+    title: 
+    seo_title: 
+    seo_description: 
+    seo_keywords: 
+    back_href: "/why-wholeview/therapies-used/"
+    back_title: Therapies Used
+    layout: tertiary
+- scope:
+    path: ''
+    type: trainings
+  values:
+    tags:
+    - clinician training
+    back_href: "/services/trainings-for-clinicians"
+    back_title: Trainings
+    layout: tertiary
+- scope:
+    path: ''
+    type: treatment-programs
+  values:
+    seo_title: 
+    seo_description: 
+    seo_keywords: 
+    back_href: "/services/treatment-programs"
+    back_title: Treatment Programs
+    layout: tertiary
+- scope:
+    path: ''
+    type: upcoming-events
+  values:
+    event_date: 
+    event_url: 
+- scope:
+    path: ''
+    type: group-psychotherapy
+  values:
+    title: 
+    meeting_time: e.g. Thursdays 6:00pm-7:00pm
+    back_href: "/services/group-psychotherapy"
+    back_title: Group Psychotherapy
+    permalink: "/services/group-psychotherapy/:title/"
+    layout: tertiary
+- scope:
+    path: ''
+    type: how-we-treat
+  values:
+    title: 
+    back_href: "/why-wholeview/how-we-treat/"
+    back_title: How We Treat
+    layout: tertiary
+- scope:
+    path: ''
+    type: pages
+  values:
+    layout: page
+- scope:
+    path: ''
+    type: authors
+  values:
+    permalink: "/blog/authors/:title/"
+    layout: author
+    credentials: Ph.D.
+    medium: 
+- scope:
+    path: ''
+    type: upcoming-events
+  values:
+    event_date: 
+    event_url: 
+- scope:
+    path: ''
+    type: resources-media
+  values:
+    image: ''
+    link: ''
+description: Wholeview Wellness is a boutique addiction treatment program in Midtown
+  Manhattan.
+seo_subtitle: Outpatient addiction treatment in Midtown Manhattan
+seo_site_keywords: addiction, addiction treatment, mental health treatment, intensive
+  outpatient program, alcohol treatment
+url: https://wholeview.co
+phone_number: 212-204-8430
+show_excerpts: false
+date_format: "%b %-d, %Y"
+permalink: pretty
+twitter:
+  username: wholeviewNYC
+facebook:
+  app_id: 560591311065650
+  publisher: 1306167409485389
+google_site_verification: XROlpfU_puNhq8kTgeSRd0oNdoPjLsWeiDpjmUScYbQ
+mailchimp_url: https://wholeview.us18.list-manage.com/subscribe/post?u=67197f5bd0a1decb3d98c97cc&id=c67e0a1c54
+formcarry_form_id: s1U09JSk80i
+formcarry_email_subject: An email from your website!
+formcarry_how_did_you_hear_options:
+- Google Search
+- Bing
+- Yelp
+- Psychology Today
+- ZocDoc
+- ZenCare
+- Psychiatrist
+- Therapist
+- Addiction Clinic
+- Recovery Coach
+- Sober Home
+- Current Patient
+- Prior Patient
+- Primary Care Physician
+- Other
+assets:
+  sources:
+  - _uploads
+plugins:
+- jekyll-assets
+- jekyll-seo-tag
+- jekyll-sitemap
+- jekyll-feed
+exclude:
+- Gemfile.lock
+- node_modules
+- ".gitignore"
+- ".ruby-version"
+- README.md
+- Rakefile
+breadcrumbs:
+  root:
+    hide: true
+    image: false

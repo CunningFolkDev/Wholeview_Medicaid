@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% assign keywords = site.seo_site_keywords %}
+{% assign description = site.description %}
+
+{% assign seo_source_collection = site.collections | where: "title", page.seo_source_collection | first %}
+{% if seo_source_collection %}
+  {% assign keywords = seo_source_collection.seo_keywords %}
+  {% assign description = seo_source_collection.seo_description %}
+{% endif %}
+
+{% if page['seo_keywords'] %}
+  {% assign keywords = page['seo_keywords'] %}
+{% endif %}
+
+{% if page['seo_description'] %}
+  {% assign description = page['seo_description'] %}
+{% endif %}
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="{{ keywords }}">
+    <meta name="description" content="{{ description }}">
+    {% feed_meta %}
+
+    {% include head.html %}
+    {% seo %}
+    {% include page_image.html %}
+</head>
+<body{% if page.class %} class="{{ page.class }}"{% endif %}>
+    {% include header.html %}
+    {% include nav-breadcrumbs.html %}
+
+    <div class="site" id="{{ page.title | downcase | replace: ' ', '-' }}">
+        {{ content }}
+    </div>
+
+    {% include footer.html %}
+    {% include script.html %}
+</body>
+</html>

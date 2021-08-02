@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+{% include section-type2.html
+    id=page.id
+    h1=page.h1
+    h2=page.h2
+    include_phone_number=page.include_phone_number
+    content=page.content
+%}
+
+<section id="contact-form-holder">
+    <div class="section-content" id="section-contact-form">
+
+        <div class="form-holder">
+          {% include contact_form.html %}
+
+          <div class="message" style="display:none">
+            <p>
+                <strong>Your message has been sent!</strong>
+            </p>
+
+            <p>We will get back to you as soon as we can.</p>
+          </div>
+        </div>
+    </div>
+</section>
