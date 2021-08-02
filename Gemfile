@@ -13,7 +13,6 @@ group :jekyll_plugins do
 end
 
 group :development do
-  gem 'siteleaf', '~>2'
   gem 'rake'
   gem 'html-proofer'
 end
