@@ -17,8 +17,11 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
     - name: Build jekyll site
-      uses: jerryjvl/jekyll-build-action@v1
-      working-directory: Wholeview_Medicaid/
+      run: |
+        echo $(pwd)
+        echo $(ls -l)
+        bundle exec jekyll build
+      working-directory: ./Wholeview_Medicaid
     - uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
