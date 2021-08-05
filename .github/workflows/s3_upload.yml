@@ -17,9 +17,7 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
     - name: Build jekyll site
-      run:
-        bundle install
-        bundle exec jekyll build
+      run: bundle exec jekyll build
     - uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
