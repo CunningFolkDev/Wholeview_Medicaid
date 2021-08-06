@@ -1,10 +1,11 @@
 ---
-title: Aryeh "Ari" Barris
+title: Aryeh \"Ari\" Barris
 date: 2019-09-29 13:13:00 -04:00
 position: 9
 full_title: Aryeh Barris, Psy.D.
 job_title: Clinician
 photo: "/uploads/Ari%20Head%20Shot_edited-dfda4d.jpg"
+photo_alt: Ari Barris
 photo_left: true
 back_href: "/about-us/our-staff"
 back_title: Our Staff
