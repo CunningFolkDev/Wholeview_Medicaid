@@ -1,6 +1,6 @@
 name: Run html_proofer
 
-on: [pull-request]
+on: [pull_request]
 
 jobs:
   build_and_lint:
