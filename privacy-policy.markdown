@@ -224,7 +224,7 @@ You can ask for a paper copy of this notice at any time, even if you have agreed
 **File a complaint if you feel your rights are violated**
 
 * You can complain if you feel we have violated your rights by contacting us using the information on page 1.
-* You can file a complaint with the U.S. Department of Health and Human Services Office for Civil Rights by sending a letter to 200 Independence Avenue, S.W., Washington, D.C. 20201, calling 1-877-696-6775, or visiting [www.hhs.gov/ocr/privacy/hipaa/complaints/](www.hhs.gov/ocr/privacy/hipaa/complaints/)
+* You can file a complaint with the U.S. Department of Health and Human Services Office for Civil Rights by sending a letter to 200 Independence Avenue, S.W., Washington, D.C. 20201, calling 1-877-696-6775, or visiting [www.hhs.gov/ocr/privacy/hipaa/complaints/](https://www.hhs.gov/hipaa/filing-a-complaint/what-to-expect/index.html)
 
 * We will not retaliate against you for filing a complaint.
 

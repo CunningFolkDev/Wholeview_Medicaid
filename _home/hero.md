@@ -1,8 +1,8 @@
 ---
 title: Hero
 position: 1
-h1: Welcome to Wholeview Wellness&reg;
-h2: State of the art care, delivered compassionately.
+h1: Stay tuned
+h2: Wholeview Medicaid, coming soon
 button_label: Get in touch
 ---
 

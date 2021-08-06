@@ -7,6 +7,7 @@ task :html_proofer do
   end
   opts = {
     url_ignore: [/localhost/, /wholeview.co/, '#send'],
+    disable_external: true,
     typhoeus: {
       ssl_verifyhost: 0,
       ssl_verifypeer: false,
